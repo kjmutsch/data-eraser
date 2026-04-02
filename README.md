@@ -11,7 +11,7 @@ Finally report.py sends a summary email in case I want to follow up with any uns
 
 ### What You'll Need
 
-1. A **Gmail account** to send emails from (with an App Password—setup instructions below)
+1. A **Gmail account** to send emails from
 
 ### Getting Started
 
