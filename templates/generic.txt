@@ -1,0 +1,36 @@
+Subject: Data Deletion Request — {{ first_name }} {{ last_name }}
+
+To Whom It May Concern,
+
+I am writing to formally request the deletion of all personal data your organization holds about me. This request is submitted pursuant to applicable privacy regulations including the California Consumer Privacy Act (CCPA), the General Data Protection Regulation (GDPR Article 17 — Right to Erasure), and any other applicable federal or state privacy laws.
+
+My identifying information is as follows:
+
+    Full Name:      {{ first_name }} {{ last_name }}
+    Email Address:  {{ email }}
+    Home Address:   {{ address }}, {{ city }}, {{ state }} {{ zip }}
+    Phone Number:   {{ phone }}
+    Date of Birth:  {{ dob }}
+
+I formally request that your organization:
+
+    1. Permanently delete all personal data you hold about me from your databases,
+       including any backups or archives.
+    2. Cease the sale, sharing, or transfer of my personal data to any third parties.
+    3. Provide written confirmation that all records matching the above identifying
+       information have been deleted or suppressed.
+    4. Disclose any third parties with whom my data has previously been shared so
+       that I may submit additional removal requests as necessary.
+
+Please be advised that you are required to respond to this request within 30 days.
+Failure to comply may result in a formal complaint being filed with the appropriate
+regulatory authority.
+
+I do not consent to any use of my personal data beyond what is strictly required
+to process this deletion request.
+
+Regards,
+
+{{ first_name }} {{ last_name }}
+{{ email }}
+{{ phone }}

@@ -1,0 +1,45 @@
+Subject: Right to Erasure Request (GDPR Article 17) — {{ first_name }} {{ last_name }}
+
+To Whom It May Concern,
+
+I am writing to formally invoke my Right to Erasure under Article 17 of the General
+Data Protection Regulation (GDPR). I request that all personal data your organization
+holds about me be permanently deleted without undue delay.
+
+My identifying information is as follows:
+
+    Full Name:      {{ first_name }} {{ last_name }}
+    Email Address:  {{ email }}
+    Home Address:   {{ address }}, {{ city }}, {{ state }} {{ zip }}
+    Phone Number:   {{ phone }}
+    Date of Birth:  {{ dob }}
+
+Under Article 17 of the GDPR, I have the right to obtain erasure of my personal data
+where one or more of the following applies:
+
+    — The data is no longer necessary for the purposes for which it was collected.
+    — I withdraw consent on which processing is based.
+    — I object to the processing pursuant to Article 21.
+    — The data has been unlawfully processed.
+
+I formally request that your organization:
+
+    1. Permanently delete all personal data you hold about me, including backups
+       and archives, without undue delay and within 30 days of this request.
+    2. Cease all processing and sale of my personal data immediately.
+    3. Notify any third parties to whom my data has been disclosed, requiring them
+       to also erase the data.
+    4. Provide written confirmation of compliance with this request.
+
+Please be advised that under Article 17(3), exemptions to this right are narrow.
+If you believe an exemption applies, you are required to inform me of the specific
+legal basis for retaining my data.
+
+Failure to comply within 30 days may result in a formal complaint being filed with
+the relevant supervisory authority under Article 77 of the GDPR.
+
+Regards,
+
+{{ first_name }} {{ last_name }}
+{{ email }}
+{{ phone }}

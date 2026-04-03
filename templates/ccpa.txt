@@ -1,0 +1,44 @@
+Subject: Consumer Data Deletion Request (CCPA) — {{ first_name }} {{ last_name }}
+
+To Whom It May Concern,
+
+I am writing to formally exercise my rights under the California Consumer Privacy
+Act (CCPA), Cal. Civ. Code § 1798.100 et seq., and the California Privacy Rights
+Act (CPRA). I hereby request that your organization delete all personal information
+it has collected about me and direct any service providers or third parties to do
+the same.
+
+My identifying information is as follows:
+
+    Full Name:      {{ first_name }} {{ last_name }}
+    Email Address:  {{ email }}
+    Home Address:   {{ address }}, {{ city }}, {{ state }} {{ zip }}
+    Phone Number:   {{ phone }}
+    Date of Birth:  {{ dob }}
+
+Pursuant to Cal. Civ. Code § 1798.105, I formally request that your organization:
+
+    1. Delete all personal information you have collected, retained, or sold
+       about me from your records and direct any service providers to do the same.
+    2. Cease the sale or sharing of my personal information to any third parties,
+       pursuant to my right to opt-out under Cal. Civ. Code § 1798.120.
+    3. Provide written confirmation that my personal information has been deleted
+       and that it will not be re-collected or re-sold.
+    4. Disclose the categories of personal information collected about me and the
+       third parties with whom it has been shared.
+
+Please be advised that under the CCPA you are required to respond to this request
+within 45 days. If necessary, you may take an additional 45 days, but you must
+notify me of the extension within the initial 45-day period.
+
+Failure to comply may result in a complaint being filed with the California
+Attorney General's Office.
+
+I do not consent to any use of my personal information beyond what is strictly
+required to process this deletion request.
+
+Regards,
+
+{{ first_name }} {{ last_name }}
+{{ email }}
+{{ phone }}
