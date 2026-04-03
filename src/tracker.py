@@ -27,7 +27,8 @@ def init_db():
             opt_out_url TEXT,
             sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             updated_at TIMESTAMP DEFAULT NULL, -- let it remain null until we run the second script
-            comments TEXT
+            comments TEXT,
+            response_time_hours REAL DEFAULT NULL -- how long it took to get a confirmation email back, in hours
         )
     ''')
     conn.commit()
