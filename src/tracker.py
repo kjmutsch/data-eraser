@@ -19,7 +19,7 @@ def init_db():
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS requests (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            broker_id TEXT NOT NULL,
+            broker_id TEXT NOT NULL UNIQUE,
             broker_name TEXT NOT NULL,
             method TEXT NOT NULL, -- email, form, or manual
             status TEXT NOT NULL, -- pending, sent, confirmed, failed, captcha_blocked, needs_manual
@@ -38,7 +38,7 @@ def log_request(broker_id, broker_name, method, status, priority, opt_out_url=No
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute('''
-        INSERT INTO requests (broker_id, broker_name, method, status, priority, opt_out_url, comments)
+        INSERT OR IGNORE INTO requests (broker_id, broker_name, method, status, priority, opt_out_url, comments)
         VALUES (?, ?, ?, ?, ?, ?, ?)
     ''', (broker_id, broker_name, method, status, priority, opt_out_url, comments))
     conn.commit()
