@@ -1,6 +1,6 @@
 # Data Eraser
 
-This project began because I'm sick of getting spam calls and I'm sick of companies using my data without explicit permission. There was a repo called Eraser that I forked from because they already accumulated data for 750+ data brokers. I used just that data, everything else in this repo is entirely written by me.
+This project began because I'm sick of getting spam calls and I'm sick of companies using my data without explicit permission. There was a repo called Eraser that I forked from because they already accumulated data for 750+ data brokers. I used just that data, everything else in this repo is written by me and then Claude wrote the email templates.
 
 Eraser was written in Go. It's email only with no browser automation, configs stored in config.yaml, runs once and then relies on dashboard for manual attention.
 
