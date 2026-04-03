@@ -1,0 +1,1 @@
+# First script to run that actually sends the email blast and playwright form submissions then logs everything to SQLite
