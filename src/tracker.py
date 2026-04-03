@@ -100,3 +100,18 @@ def get_report_data():
         "high_priority_issues": high_priority_issues,
         "lower_priority_issues": lower_priority_issues
     }
+
+def reset_db():
+    confirm = input("Are you sure you want to reset the database? This will delete all records. Type 'yes' to confirm: ")
+    if confirm.lower() != 'yes':
+        print('Cancelled.')
+        return
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute('DROP TABLE IF EXISTS requests')
+    conn.commit()
+    conn.close()
+    print("Database cleared.")
+
+if __name__ == "__main__":
+    reset_db()
