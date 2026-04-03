@@ -58,3 +58,6 @@ browser-data/
 
 # Personal data that might leak
 pending_job.json
+
+credentials.json
+token.json
