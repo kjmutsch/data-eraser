@@ -114,5 +114,17 @@ def reset_db():
     conn.close()
     print("Database cleared.")
 
+def log_confirmation(broker_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute('''
+        UPDATE requests
+        SET status = 'confirmed', updated_at = CURRENT_TIMESTAMP,
+            response_time_hours = (julianday('now') - julianday(sent_at)) * 24
+        WHERE broker_id = ?
+    ''', (broker_id,))
+    conn.commit()
+    conn.close()
+
 if __name__ == "__main__":
     reset_db()
