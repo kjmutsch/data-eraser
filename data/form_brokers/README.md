@@ -1,0 +1,1 @@
+The form_brokers folder is for brokers that need browser automation. I only use this for high priority sites like Spokeo, Whitepages, Been Verified, and so on.
