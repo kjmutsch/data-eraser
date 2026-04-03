@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            color: #333333;
+            background-color: #ffffff;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 20px;
+            color: #333333;
+            border-bottom: 2px solid #333333;
+            padding-bottom: 8px;
+        }
+        h2 {
+            font-size: 16px;
+            margin-top: 30px;
+            padding: 8px 12px;
+            color: #ffffff;
+        }
+        h2.successful { background-color: #2e7d32; }
+        h2.high-priority { background-color: #c62828; }
+        h2.low-priority { background-color: #f9a825; color: #333333; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-box {
+            border: 1px solid #dddddd;
+            padding: 12px;
+            text-align: center;
+        }
+        .stat-box .number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333333;
+        }
+        .stat-box .label {
+            font-size: 12px;
+            color: #777777;
+            margin-top: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+        }
+        th {
+            background-color: #f5f5f5;
+            text-align: left;
+            padding: 8px 12px;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #777777;
+            border-bottom: 1px solid #dddddd;
+        }
+        td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #eeeeee;
+            vertical-align: top;
+        }
+        tr:last-child td { border-bottom: none; }
+        a {
+            color: #1565c0;
+            text-decoration: none;
+        }
+        a:hover { text-decoration: underline; }
+        .status-confirmed {
+            color: #2e7d32;
+            font-weight: bold;
+        }
+        .status-needs-manual {
+            color: #c62828;
+            font-weight: bold;
+        }
+        .status-captcha {
+            color: #f9a825;
+            font-weight: bold;
+        }
+        .no-data {
+            color: #777777;
+            font-style: italic;
+            padding: 12px;
+        }
+        .footer {
+            margin-top: 40px;
+            font-size: 12px;
+            color: #aaaaaa;
+            border-top: 1px solid #eeeeee;
+            padding-top: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Data Eraser Report — {{ report_date }}</h1>
+
+    <!-- Stats block -->
+    <div class="stats-grid">
+        <div class="stat-box">
+            <div class="number">{{ total }}</div>
+            <div class="label">Total Brokers Contacted</div>
+        </div>
+        <div class="stat-box">
+            <div class="number">{{ successful_count }}</div>
+            <div class="label">Successfully Handled ({{ successful_pct }}%)</div>
+        </div>
+        <div class="stat-box">
+            <div class="number">{{ needs_attention_count }}</div>
+            <div class="label">Needs Your Attention</div>
+        </div>
+        <div class="stat-box">
+            <div class="number">{{ high_priority_count }}</div>
+            <div class="label">High Priority</div>
+        </div>
+        <div class="stat-box">
+            <div class="number">{{ low_priority_count }}</div>
+            <div class="label">Lower Priority</div>
+        </div>
+        <div class="stat-box">
+            <div class="number">{{ avg_response_time }}h</div>
+            <div class="label">Avg Response Time</div>
+        </div>
+    </div>
+
+    <!-- Successful section -->
+    <h2 class="successful">Successfully Handled ({{ successful_count }})</h2>
+    {% if successful %}
+    <table>
+        <thead>
+            <tr>
+                <th>Broker</th>
+                <th>Method</th>
+                <th>Response Time</th>
+                <th>Date Confirmed</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for broker in successful %}
+            <tr>
+                <td>{{ broker.broker_name }}</td>
+                <td>{{ broker.method }}</td>
+                <td>{{ broker.response_time_hours }}h</td>
+                <td>{{ broker.updated_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="no-data">No confirmed removals yet.</p>
+    {% endif %}
+
+    <!-- High priority manual section -->
+    <h2 class="high-priority">Needs Attention — High Priority ({{ high_priority_count }})</h2>
+    {% if high_priority_issues %}
+    <table>
+        <thead>
+            <tr>
+                <th>Broker</th>
+                <th>Method</th>
+                <th>Status</th>
+                <th>Date Sent</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for broker in high_priority_issues %}
+            <tr>
+                <td>
+                    {% if broker.opt_out_url %}
+                    <a href="{{ broker.opt_out_url }}">{{ broker.broker_name }}</a>
+                    {% else %}
+                    {{ broker.broker_name }}
+                    {% endif %}
+                </td>
+                <td>{{ broker.method }}</td>
+                <td class="status-needs-manual">{{ broker.status }}</td>
+                <td>{{ broker.sent_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="no-data">No high priority issues.</p>
+    {% endif %}
+
+    <!-- Lower priority manual section -->
+    <h2 class="low-priority">Needs Attention — Lower Priority ({{ low_priority_count }})</h2>
+    {% if lower_priority_issues %}
+    <table>
+        <thead>
+            <tr>
+                <th>Broker</th>
+                <th>Method</th>
+                <th>Status</th>
+                <th>Date Sent</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for broker in lower_priority_issues %}
+            <tr>
+                <td>
+                    {% if broker.opt_out_url %}
+                    <a href="{{ broker.opt_out_url }}">{{ broker.broker_name }}</a>
+                    {% else %}
+                    {{ broker.broker_name }}
+                    {% endif %}
+                </td>
+                <td>{{ broker.method }}</td>
+                <td class="status-needs-manual">{{ broker.status }}</td>
+                <td>{{ broker.sent_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="no-data">No lower priority issues.</p>
+    {% endif %}
+
+    <div class="footer">
+        Generated by data-eraser on {{ report_date }}
+    </div>
+</body>
+</html>
